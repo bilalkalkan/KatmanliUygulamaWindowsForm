@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BookApp.Business.Utilities
 {
-   public static class ValidationTool
+    public static class ValidationTool
     {
         public static void Validate(IValidator validator, object entity)
         {
