@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("BookApp.WebForms.UI")]
+[assembly: AssemblyTitle("BookApp.WebFormsUI")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("BookApp.WebForms.UI")]
+[assembly: AssemblyProduct("BookApp.WebFormsUI")]
 [assembly: AssemblyCopyright("Copyright ©  2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("f6200fd4-5334-4829-9fdf-295cbbee5d15")]
+[assembly: Guid("d68df2aa-ef60-44e2-9dbe-c8f0b926c44d")]
 
 // Version information for an assembly consists of the following four values:
 //

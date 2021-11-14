@@ -10,5 +10,6 @@ namespace BookApp.Business.Abstract
    public interface ICategoryService
     {
         List<Category> GetAll();
+        void Add(Category category);
     }
 }
