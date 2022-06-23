@@ -1,4 +1,5 @@
 ﻿using BookpApp.Entities.Concrete;
+using BookpApp.Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace BookApp.Business.Abstract
 {
    public interface IBookService
     {
-        List<Book>  GetAll();
+        List<BookDto>  GetAll();
         Book Get(int id);
         void Add(Book book);
         void Delete(Book book );

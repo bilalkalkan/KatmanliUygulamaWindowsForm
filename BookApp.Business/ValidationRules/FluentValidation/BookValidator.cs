@@ -22,7 +22,7 @@ namespace BookApp.Business.Validation.FluentValidation
             RuleFor(p => p.NumberofPages).GreaterThan(0);
             RuleFor(p => p.Price).GreaterThan(0);
 
-            RuleFor(p => p.BookName).Must(StartWithA).WithMessage("Ürün ismi A ile başlamalı.");
+           // RuleFor(p => p.BookName).Must(StartWithA).WithMessage("Ürün ismi A ile başlamalı.");
         }
         private bool StartWithA(string arg)
         {

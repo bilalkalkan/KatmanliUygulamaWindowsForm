@@ -66,6 +66,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\ValidationTool.cs" />
     <Compile Include="ValidationRules\FluentValidation\BookValidator.cs" />
+    <Compile Include="ValidationRules\FluentValidation\CategoryValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BookApp.DataAcces\BookApp.DataAcces.csproj">

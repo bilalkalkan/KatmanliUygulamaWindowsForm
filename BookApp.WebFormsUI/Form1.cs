@@ -19,6 +19,8 @@ namespace BookApp.WebFormsUI
     {
         private IBookService _bookService;
         private ICategoryService _categoryService;
+        Book book = new Book();
+        int Id = 0;
 
         public Form1()
         {
@@ -34,6 +36,11 @@ namespace BookApp.WebFormsUI
             LoadBooks();
         }
 
+        private object Get(int id)
+        {
+            return _bookService.Get(id);
+        }
+
         private void LoadCategories()
         {
             cbxCategory.DataSource = _categoryService.GetAll();
@@ -44,9 +51,8 @@ namespace BookApp.WebFormsUI
             cbxCategoryIdAdd.DisplayMember = "CategoryName";
             cbxCategoryIdAdd.ValueMember = "CategoryId";
 
-            cbxCategoryUpdate.DataSource = _categoryService.GetAll();
-            cbxCategoryUpdate.DisplayMember = "CategoryName";
-            cbxCategoryUpdate.ValueMember = "CategoryId";
+
+            dgwCategory.DataSource = _categoryService.GetAll();
         }
 
         private void LoadBooks()
@@ -54,6 +60,16 @@ namespace BookApp.WebFormsUI
             dgwBooks.DataSource = _bookService.GetAll();
         }
 
+        private void Reset()
+        {
+            tbxBookNameAdd.Text = "";
+            tbxAuthorNameAdd.Text = "";
+            cbxCategoryIdAdd.SelectedValue = "";
+            tbxPageofNumberAdd.Text = "";
+            tbxPriceAdd.Text = "";
+            tbxPublisherAdd.Text = "";
+            Id=0;
+        }
         private void cbxCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -82,54 +98,42 @@ namespace BookApp.WebFormsUI
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            try
+
+            book.BookName = tbxBookNameAdd.Text.Trim();
+            book.AuthorName = tbxAuthorNameAdd.Text.Trim();
+            book.CategoryId = Convert.ToInt32(cbxCategoryIdAdd.SelectedValue);
+            book.NumberofPages = Convert.ToInt32(tbxPageofNumberAdd.Text.Trim());
+            book.Price = Convert.ToDecimal(tbxPriceAdd.Text.Trim());
+            book.Publisher = tbxPublisherAdd.Text.Trim();
+
+            if (Id > 0)
             {
-                _bookService.Add(new Book
+                try
                 {
-                    BookName = tbxBookNameAdd.Text,
-                    AuthorName = tbxAuthorNameAdd.Text,
-                    CategoryId = Convert.ToInt32(cbxCategoryIdAdd.SelectedValue),
-                    NumberofPages = Convert.ToInt32(tbxPageofNumberAdd.Text),
-                    Price = Convert.ToDecimal(tbxPriceAdd.Text),
-                    Publisher = tbxPublisherAdd.Text
-                });
-                MessageBox.Show("Kitap eklendi");
-                LoadBooks();
+                    _bookService.Update(book);
+                    MessageBox.Show("Kitap güncellendi");
+                    Reset();
+                    LoadBooks();
+                }
+                catch (Exception exception)
+                {
+                    MessageBox.Show(exception.Message);
+                }
             }
-            catch (Exception exception)
+            else
             {
-
-                MessageBox.Show(exception.Message);
+                try
+                {
+                    _bookService.Add(book);
+                    MessageBox.Show("Kitap eklendi");
+                    Reset();
+                    LoadBooks();
+                }
+                catch (Exception exception)
+                {
+                    MessageBox.Show(exception.Message);
+                }
             }
-
-
-        }
-
-        private void btnUpdate_Click(object sender, EventArgs e)
-        {
-            _bookService.Update(new Book
-            {
-                Id = Convert.ToInt32(dgwBooks.CurrentRow.Cells[0].Value),
-                BookName = tbxBookNameUpdate.Text,
-                AuthorName = tbxAuthorNameUpdate.Text,
-                CategoryId = Convert.ToInt32(cbxCategoryUpdate.SelectedValue),
-                NumberofPages = Convert.ToInt32(tbxNumberOfPageUpdate.Text),
-                Price = Convert.ToDecimal(tbxPriceUpdate.Text),
-                Publisher = tbxPublisherUpdate.Text
-            });
-            MessageBox.Show("Kitap güncellendi");
-            LoadBooks();
-        }
-
-        private void dgwBooks_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            var row = dgwBooks.CurrentRow;
-            tbxBookNameUpdate.Text = row.Cells[1].Value.ToString();
-            tbxAuthorNameUpdate.Text = row.Cells[2].Value.ToString();
-            cbxCategoryUpdate.SelectedValue = row.Cells[4].Value;
-            tbxNumberOfPageUpdate.Text = row.Cells[3].Value.ToString();
-            tbxPriceUpdate.Text = row.Cells[5].Value.ToString();
-            tbxPublisherUpdate.Text = row.Cells[6].Value.ToString();
         }
 
         private void btnRemove_Click(object sender, EventArgs e)
@@ -143,15 +147,53 @@ namespace BookApp.WebFormsUI
         }
 
 
-
-        private void btnCategoryAdd_Click(object sender, EventArgs e)
+        private void btnCategoryAdd_Click_1(object sender, EventArgs e)
         {
-            _categoryService.Add(new Category
+            try
             {
-                CategoryName = tbxCategoryAdd.Text
+                _categoryService.Add(new Category
+                {
+                    CategoryName = tbxCategoryAdd.Text
+                });
+                MessageBox.Show("Kategori eklendi");
+                LoadCategories();
+            }
+            catch (Exception exception)
+            {
+
+                MessageBox.Show(exception.Message);
+            }
+
+        }
+
+        private void btnCategoryDelete_Click(object sender, EventArgs e)
+        {
+            _categoryService.Delete(new Category
+            {
+                CategoryId = Convert.ToInt32(dgwCategory.CurrentRow.Cells[0].Value)
             });
-            MessageBox.Show("Kategori eklendi");
+            MessageBox.Show("Kategori silindi");
             LoadCategories();
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            Reset();
+        }
+
+        private void dgwBooks_DoubleClick(object sender, EventArgs e)
+        {
+            if (dgwBooks.CurrentCell.RowIndex != -1)
+            {
+                Id = Convert.ToInt32(dgwBooks.CurrentRow.Cells["Id"].Value);
+                book = _bookService.Get(Id);
+                tbxBookNameAdd.Text = book.BookName;
+                tbxAuthorNameAdd.Text = book.AuthorName;
+                cbxCategoryIdAdd.SelectedValue = book.CategoryId;
+                tbxPageofNumberAdd.Text = book.NumberofPages.ToString();
+                tbxPriceAdd.Text = book.Price.ToString();
+                tbxPublisherAdd.Text = book.Publisher.ToString();
+            }
         }
     }
 }

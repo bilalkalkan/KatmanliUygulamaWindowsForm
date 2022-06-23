@@ -10,8 +10,8 @@ namespace BookApp.DataAcces.Concrete
 {
    public class BookAppContext:DbContext
     {
-        public DbSet<Book> books { get; set; }
-        public DbSet<Member> members { get; set; }
-        public DbSet<Category> categories { get; set; }
+        public DbSet<Book> Books { get; set; }
+        public DbSet<Member> Members { get; set; }
+        public DbSet<Category> Categories { get; set; }
     }
 }

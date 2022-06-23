@@ -38,6 +38,7 @@ namespace BookApp.WebFormsUI
             this.tbxBooktName = new System.Windows.Forms.TextBox();
             this.lblBookName = new System.Windows.Forms.Label();
             this.gbxBookAdd = new System.Windows.Forms.GroupBox();
+            this.btnReset = new System.Windows.Forms.Button();
             this.tbxPublisherAdd = new System.Windows.Forms.TextBox();
             this.lblPublisherAdd = new System.Windows.Forms.Label();
             this.btnAdd = new System.Windows.Forms.Button();
@@ -51,41 +52,29 @@ namespace BookApp.WebFormsUI
             this.lblAuthorNameAdd = new System.Windows.Forms.Label();
             this.lblCategoryID = new System.Windows.Forms.Label();
             this.lblBookNameAdd = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.tbxPublisherUpdate = new System.Windows.Forms.TextBox();
-            this.lblPublisherUpdate = new System.Windows.Forms.Label();
-            this.btnUpdate = new System.Windows.Forms.Button();
-            this.tbxPriceUpdate = new System.Windows.Forms.TextBox();
-            this.tbxNumberOfPageUpdate = new System.Windows.Forms.TextBox();
-            this.tbxAuthorNameUpdate = new System.Windows.Forms.TextBox();
-            this.cbxCategoryUpdate = new System.Windows.Forms.ComboBox();
-            this.tbxBookNameUpdate = new System.Windows.Forms.TextBox();
-            this.lblPriceUpdate = new System.Windows.Forms.Label();
-            this.lblNumberOfPageUpdate = new System.Windows.Forms.Label();
-            this.lblAuthorNameUpdate = new System.Windows.Forms.Label();
-            this.lblCategoryUpdate = new System.Windows.Forms.Label();
-            this.lblBookNameUpdate = new System.Windows.Forms.Label();
             this.btnRemove = new System.Windows.Forms.Button();
             this.gbxCategoryAdd = new System.Windows.Forms.GroupBox();
+            this.btnCategoryDelete = new System.Windows.Forms.Button();
             this.btnCategoryAdd = new System.Windows.Forms.Button();
             this.tbxCategoryAdd = new System.Windows.Forms.TextBox();
             this.lblCategoryAdd = new System.Windows.Forms.Label();
+            this.dgwCategory = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dgwBooks)).BeginInit();
             this.gbxCategori.SuspendLayout();
             this.gbxBooktName.SuspendLayout();
             this.gbxBookAdd.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             this.gbxCategoryAdd.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgwCategory)).BeginInit();
             this.SuspendLayout();
             // 
             // dgwBooks
             // 
             this.dgwBooks.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgwBooks.Location = new System.Drawing.Point(435, 12);
+            this.dgwBooks.Location = new System.Drawing.Point(434, -1);
             this.dgwBooks.Name = "dgwBooks";
-            this.dgwBooks.Size = new System.Drawing.Size(912, 218);
+            this.dgwBooks.Size = new System.Drawing.Size(752, 218);
             this.dgwBooks.TabIndex = 0;
-            this.dgwBooks.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgwBooks_CellClick);
+            this.dgwBooks.DoubleClick += new System.EventHandler(this.dgwBooks_DoubleClick);
             // 
             // gbxCategori
             // 
@@ -146,6 +135,7 @@ namespace BookApp.WebFormsUI
             // 
             // gbxBookAdd
             // 
+            this.gbxBookAdd.Controls.Add(this.btnReset);
             this.gbxBookAdd.Controls.Add(this.tbxPublisherAdd);
             this.gbxBookAdd.Controls.Add(this.lblPublisherAdd);
             this.gbxBookAdd.Controls.Add(this.btnAdd);
@@ -161,10 +151,20 @@ namespace BookApp.WebFormsUI
             this.gbxBookAdd.Controls.Add(this.lblBookNameAdd);
             this.gbxBookAdd.Location = new System.Drawing.Point(22, 251);
             this.gbxBookAdd.Name = "gbxBookAdd";
-            this.gbxBookAdd.Size = new System.Drawing.Size(747, 190);
+            this.gbxBookAdd.Size = new System.Drawing.Size(747, 217);
             this.gbxBookAdd.TabIndex = 4;
             this.gbxBookAdd.TabStop = false;
             this.gbxBookAdd.Text = "Yeni Kitap ekle";
+            // 
+            // btnReset
+            // 
+            this.btnReset.Location = new System.Drawing.Point(162, 168);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(77, 27);
+            this.btnReset.TabIndex = 13;
+            this.btnReset.Text = "Temizle";
+            this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // tbxPublisherAdd
             // 
@@ -188,7 +188,7 @@ namespace BookApp.WebFormsUI
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(184, 28);
             this.btnAdd.TabIndex = 10;
-            this.btnAdd.Text = "Ekle";
+            this.btnAdd.Text = "Kaydet";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
@@ -273,138 +273,9 @@ namespace BookApp.WebFormsUI
             this.lblBookNameAdd.TabIndex = 0;
             this.lblBookNameAdd.Text = "Kitap Adı";
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.tbxPublisherUpdate);
-            this.groupBox1.Controls.Add(this.lblPublisherUpdate);
-            this.groupBox1.Controls.Add(this.btnUpdate);
-            this.groupBox1.Controls.Add(this.tbxPriceUpdate);
-            this.groupBox1.Controls.Add(this.tbxNumberOfPageUpdate);
-            this.groupBox1.Controls.Add(this.tbxAuthorNameUpdate);
-            this.groupBox1.Controls.Add(this.cbxCategoryUpdate);
-            this.groupBox1.Controls.Add(this.tbxBookNameUpdate);
-            this.groupBox1.Controls.Add(this.lblPriceUpdate);
-            this.groupBox1.Controls.Add(this.lblNumberOfPageUpdate);
-            this.groupBox1.Controls.Add(this.lblAuthorNameUpdate);
-            this.groupBox1.Controls.Add(this.lblCategoryUpdate);
-            this.groupBox1.Controls.Add(this.lblBookNameUpdate);
-            this.groupBox1.Location = new System.Drawing.Point(22, 467);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(747, 194);
-            this.groupBox1.TabIndex = 5;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Ürün Güncelle";
-            // 
-            // tbxPublisherUpdate
-            // 
-            this.tbxPublisherUpdate.Location = new System.Drawing.Point(500, 123);
-            this.tbxPublisherUpdate.Name = "tbxPublisherUpdate";
-            this.tbxPublisherUpdate.Size = new System.Drawing.Size(184, 20);
-            this.tbxPublisherUpdate.TabIndex = 12;
-            // 
-            // lblPublisherUpdate
-            // 
-            this.lblPublisherUpdate.AutoSize = true;
-            this.lblPublisherUpdate.Location = new System.Drawing.Point(426, 130);
-            this.lblPublisherUpdate.Name = "lblPublisherUpdate";
-            this.lblPublisherUpdate.Size = new System.Drawing.Size(47, 13);
-            this.lblPublisherUpdate.TabIndex = 11;
-            this.lblPublisherUpdate.Text = "Yayınevi";
-            // 
-            // btnUpdate
-            // 
-            this.btnUpdate.Location = new System.Drawing.Point(501, 160);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(184, 28);
-            this.btnUpdate.TabIndex = 10;
-            this.btnUpdate.Text = "Güncelle";
-            this.btnUpdate.UseVisualStyleBackColor = true;
-            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
-            // 
-            // tbxPriceUpdate
-            // 
-            this.tbxPriceUpdate.Location = new System.Drawing.Point(501, 90);
-            this.tbxPriceUpdate.Name = "tbxPriceUpdate";
-            this.tbxPriceUpdate.Size = new System.Drawing.Size(184, 20);
-            this.tbxPriceUpdate.TabIndex = 9;
-            // 
-            // tbxNumberOfPageUpdate
-            // 
-            this.tbxNumberOfPageUpdate.Location = new System.Drawing.Point(501, 44);
-            this.tbxNumberOfPageUpdate.Name = "tbxNumberOfPageUpdate";
-            this.tbxNumberOfPageUpdate.Size = new System.Drawing.Size(184, 20);
-            this.tbxNumberOfPageUpdate.TabIndex = 8;
-            // 
-            // tbxAuthorNameUpdate
-            // 
-            this.tbxAuthorNameUpdate.Location = new System.Drawing.Point(103, 128);
-            this.tbxAuthorNameUpdate.Name = "tbxAuthorNameUpdate";
-            this.tbxAuthorNameUpdate.Size = new System.Drawing.Size(218, 20);
-            this.tbxAuthorNameUpdate.TabIndex = 7;
-            // 
-            // cbxCategoryUpdate
-            // 
-            this.cbxCategoryUpdate.FormattingEnabled = true;
-            this.cbxCategoryUpdate.Location = new System.Drawing.Point(98, 86);
-            this.cbxCategoryUpdate.Name = "cbxCategoryUpdate";
-            this.cbxCategoryUpdate.Size = new System.Drawing.Size(222, 21);
-            this.cbxCategoryUpdate.TabIndex = 6;
-            // 
-            // tbxBookNameUpdate
-            // 
-            this.tbxBookNameUpdate.Location = new System.Drawing.Point(99, 44);
-            this.tbxBookNameUpdate.Name = "tbxBookNameUpdate";
-            this.tbxBookNameUpdate.Size = new System.Drawing.Size(222, 20);
-            this.tbxBookNameUpdate.TabIndex = 5;
-            // 
-            // lblPriceUpdate
-            // 
-            this.lblPriceUpdate.AutoSize = true;
-            this.lblPriceUpdate.Location = new System.Drawing.Point(423, 90);
-            this.lblPriceUpdate.Name = "lblPriceUpdate";
-            this.lblPriceUpdate.Size = new System.Drawing.Size(29, 13);
-            this.lblPriceUpdate.TabIndex = 4;
-            this.lblPriceUpdate.Text = "Fiyat";
-            // 
-            // lblNumberOfPageUpdate
-            // 
-            this.lblNumberOfPageUpdate.AutoSize = true;
-            this.lblNumberOfPageUpdate.Location = new System.Drawing.Point(423, 47);
-            this.lblNumberOfPageUpdate.Name = "lblNumberOfPageUpdate";
-            this.lblNumberOfPageUpdate.Size = new System.Drawing.Size(64, 13);
-            this.lblNumberOfPageUpdate.TabIndex = 3;
-            this.lblNumberOfPageUpdate.Text = "Sayfa Sayısı";
-            // 
-            // lblAuthorNameUpdate
-            // 
-            this.lblAuthorNameUpdate.AutoSize = true;
-            this.lblAuthorNameUpdate.Location = new System.Drawing.Point(31, 130);
-            this.lblAuthorNameUpdate.Name = "lblAuthorNameUpdate";
-            this.lblAuthorNameUpdate.Size = new System.Drawing.Size(52, 13);
-            this.lblAuthorNameUpdate.TabIndex = 2;
-            this.lblAuthorNameUpdate.Text = "Yazar Adı";
-            // 
-            // lblCategoryUpdate
-            // 
-            this.lblCategoryUpdate.AutoSize = true;
-            this.lblCategoryUpdate.Location = new System.Drawing.Point(31, 90);
-            this.lblCategoryUpdate.Name = "lblCategoryUpdate";
-            this.lblCategoryUpdate.Size = new System.Drawing.Size(46, 13);
-            this.lblCategoryUpdate.TabIndex = 1;
-            this.lblCategoryUpdate.Text = "Kategori";
-            // 
-            // lblBookNameUpdate
-            // 
-            this.lblBookNameUpdate.AutoSize = true;
-            this.lblBookNameUpdate.Location = new System.Drawing.Point(31, 47);
-            this.lblBookNameUpdate.Name = "lblBookNameUpdate";
-            this.lblBookNameUpdate.Size = new System.Drawing.Size(49, 13);
-            this.lblBookNameUpdate.TabIndex = 0;
-            this.lblBookNameUpdate.Text = "Kitap Adı";
-            // 
             // btnRemove
             // 
-            this.btnRemove.Location = new System.Drawing.Point(967, 528);
+            this.btnRemove.Location = new System.Drawing.Point(859, 609);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(183, 46);
             this.btnRemove.TabIndex = 6;
@@ -414,28 +285,40 @@ namespace BookApp.WebFormsUI
             // 
             // gbxCategoryAdd
             // 
+            this.gbxCategoryAdd.Controls.Add(this.btnCategoryDelete);
             this.gbxCategoryAdd.Controls.Add(this.btnCategoryAdd);
             this.gbxCategoryAdd.Controls.Add(this.tbxCategoryAdd);
             this.gbxCategoryAdd.Controls.Add(this.lblCategoryAdd);
-            this.gbxCategoryAdd.Location = new System.Drawing.Point(888, 260);
+            this.gbxCategoryAdd.Location = new System.Drawing.Point(838, 425);
             this.gbxCategoryAdd.Name = "gbxCategoryAdd";
-            this.gbxCategoryAdd.Size = new System.Drawing.Size(423, 181);
+            this.gbxCategoryAdd.Size = new System.Drawing.Size(423, 112);
             this.gbxCategoryAdd.TabIndex = 8;
             this.gbxCategoryAdd.TabStop = false;
             this.gbxCategoryAdd.Text = "Yeni Kategori ekle";
             // 
+            // btnCategoryDelete
+            // 
+            this.btnCategoryDelete.Location = new System.Drawing.Point(288, 23);
+            this.btnCategoryDelete.Name = "btnCategoryDelete";
+            this.btnCategoryDelete.Size = new System.Drawing.Size(129, 20);
+            this.btnCategoryDelete.TabIndex = 3;
+            this.btnCategoryDelete.Text = "Sil";
+            this.btnCategoryDelete.UseVisualStyleBackColor = true;
+            this.btnCategoryDelete.Click += new System.EventHandler(this.btnCategoryDelete_Click);
+            // 
             // btnCategoryAdd
             // 
-            this.btnCategoryAdd.Location = new System.Drawing.Point(144, 100);
+            this.btnCategoryAdd.Location = new System.Drawing.Point(144, 59);
             this.btnCategoryAdd.Name = "btnCategoryAdd";
             this.btnCategoryAdd.Size = new System.Drawing.Size(129, 24);
             this.btnCategoryAdd.TabIndex = 2;
             this.btnCategoryAdd.Text = "Ekle";
             this.btnCategoryAdd.UseVisualStyleBackColor = true;
+            this.btnCategoryAdd.Click += new System.EventHandler(this.btnCategoryAdd_Click_1);
             // 
             // tbxCategoryAdd
             // 
-            this.tbxCategoryAdd.Location = new System.Drawing.Point(144, 54);
+            this.tbxCategoryAdd.Location = new System.Drawing.Point(144, 23);
             this.tbxCategoryAdd.Name = "tbxCategoryAdd";
             this.tbxCategoryAdd.Size = new System.Drawing.Size(129, 20);
             this.tbxCategoryAdd.TabIndex = 1;
@@ -443,20 +326,28 @@ namespace BookApp.WebFormsUI
             // lblCategoryAdd
             // 
             this.lblCategoryAdd.AutoSize = true;
-            this.lblCategoryAdd.Location = new System.Drawing.Point(50, 57);
+            this.lblCategoryAdd.Location = new System.Drawing.Point(18, 42);
             this.lblCategoryAdd.Name = "lblCategoryAdd";
             this.lblCategoryAdd.Size = new System.Drawing.Size(64, 13);
             this.lblCategoryAdd.TabIndex = 0;
             this.lblCategoryAdd.Text = "Kategori Adı";
             // 
+            // dgwCategory
+            // 
+            this.dgwCategory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgwCategory.Location = new System.Drawing.Point(792, 223);
+            this.dgwCategory.Name = "dgwCategory";
+            this.dgwCategory.Size = new System.Drawing.Size(242, 196);
+            this.dgwCategory.TabIndex = 9;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1459, 831);
+            this.ClientSize = new System.Drawing.Size(1370, 749);
+            this.Controls.Add(this.dgwCategory);
             this.Controls.Add(this.gbxCategoryAdd);
             this.Controls.Add(this.btnRemove);
-            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.gbxBookAdd);
             this.Controls.Add(this.gbxBooktName);
             this.Controls.Add(this.gbxCategori);
@@ -471,10 +362,9 @@ namespace BookApp.WebFormsUI
             this.gbxBooktName.PerformLayout();
             this.gbxBookAdd.ResumeLayout(false);
             this.gbxBookAdd.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.gbxCategoryAdd.ResumeLayout(false);
             this.gbxCategoryAdd.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgwCategory)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -501,27 +391,16 @@ namespace BookApp.WebFormsUI
         private System.Windows.Forms.Label lblAuthorNameAdd;
         private System.Windows.Forms.Label lblCategoryID;
         private System.Windows.Forms.Label lblBookNameAdd;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button btnUpdate;
-        private System.Windows.Forms.TextBox tbxPriceUpdate;
-        private System.Windows.Forms.TextBox tbxNumberOfPageUpdate;
-        private System.Windows.Forms.TextBox tbxAuthorNameUpdate;
-        private System.Windows.Forms.ComboBox cbxCategoryUpdate;
-        private System.Windows.Forms.TextBox tbxBookNameUpdate;
-        private System.Windows.Forms.Label lblPriceUpdate;
-        private System.Windows.Forms.Label lblNumberOfPageUpdate;
-        private System.Windows.Forms.Label lblAuthorNameUpdate;
-        private System.Windows.Forms.Label lblCategoryUpdate;
-        private System.Windows.Forms.Label lblBookNameUpdate;
         private System.Windows.Forms.Button btnRemove;
         private System.Windows.Forms.TextBox tbxPublisherAdd;
         private System.Windows.Forms.Label lblPublisherAdd;
-        private System.Windows.Forms.TextBox tbxPublisherUpdate;
-        private System.Windows.Forms.Label lblPublisherUpdate;
         private System.Windows.Forms.GroupBox gbxCategoryAdd;
         private System.Windows.Forms.Button btnCategoryAdd;
         private System.Windows.Forms.TextBox tbxCategoryAdd;
         private System.Windows.Forms.Label lblCategoryAdd;
+        private System.Windows.Forms.Button btnCategoryDelete;
+        private System.Windows.Forms.DataGridView dgwCategory;
+        private System.Windows.Forms.Button btnReset;
     }
 }
 

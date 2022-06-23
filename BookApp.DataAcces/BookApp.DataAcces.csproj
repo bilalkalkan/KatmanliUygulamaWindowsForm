@@ -62,7 +62,9 @@
     <Compile Include="Concrete\EntityFramework\EfMemberDal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Concrete\NHibernate\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BookpApp.Entities\BookpApp.Entities.csproj">
       <Project>{AEDB4604-F55A-48EA-BF42-8C3BAACF05C5}</Project>

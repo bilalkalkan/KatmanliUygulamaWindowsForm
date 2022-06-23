@@ -1,6 +1,9 @@
 ﻿using BookApp.Business.Abstract;
+using BookApp.Business.Utilities;
+using BookApp.Business.ValidationRules.FluentValidation;
 using BookApp.DataAcces.Abstract;
 using BookpApp.Entities.Concrete;
+using FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +23,13 @@ namespace BookApp.Business.Concrete
 
         public void Add(Category category)
         {
+            ValidationTool.Validate(new CategoryValidator(), category);
             _categoryDal.Add(category);
+        }
+
+        public void Delete(Category category)
+        {
+            _categoryDal.Delete(category);
         }
 
         public List<Category> GetAll()

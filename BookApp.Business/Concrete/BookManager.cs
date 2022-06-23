@@ -3,6 +3,7 @@ using BookApp.Business.Utilities;
 using BookApp.Business.Validation.FluentValidation;
 using BookApp.DataAcces.Abstract;
 using BookpApp.Entities.Concrete;
+using BookpApp.Entities.DTOs;
 using FluentValidation;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,7 @@ namespace BookApp.Business.Concrete
 
         public void Add(Book book)
         {
+
             ValidationTool.Validate(new BookValidator(), book);
             _bookDal.Add(book);
         }
@@ -45,9 +47,9 @@ namespace BookApp.Business.Concrete
             return _bookDal.Get(p => p.Id == id);
         }
 
-        public List<Book> GetAll()
+        public List<BookDto> GetAll()
         {
-            return _bookDal.GetAll();
+            return _bookDal.GetBooks();
         }
 
         public List<Book> GetBooksByBookName(string bookName)
@@ -60,8 +62,11 @@ namespace BookApp.Business.Concrete
             return _bookDal.GetAll(p => p.CategoryId == categoryId);
         }
 
+        
+
         public void Update(Book book)
         {
+            ValidationTool.Validate(new BookValidator(), book);
             _bookDal.Update(book);
         }
     }
